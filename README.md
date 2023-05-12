@@ -13,9 +13,9 @@ Alternatively, you can clone the project directly from this repo to your local s
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/surjithctly/astroship.git myProjectName
+git clone https://github.com/PUJ-Ubicu/WebPageAstro-Ubicu myProjectName
 # or
-git clone https://github.com/surjithctly/astroship.git .
+git clone https://github.com/PUJ-Ubicu/WebPageAstro-Ubicu .
 ```
 
 The `.` will clone it to the current directory so make sure you are inside your project folder first.
