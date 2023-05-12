@@ -1,37 +1,53 @@
 ---
 import Container from "@components/container.astro";
+import { Picture } from "@astrojs/image/components";
+import ubicuLogo1 from "assets/ubicuLogo1.png";
 import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
-
+/*
 const menuitems = [
   {
-    title: "Features",
-    path: "#",
-    children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
-    ],
-  },
-  {
-    title: "Pricing",
+    title: "Quienes somos",
     path: "/pricing",
   },
   {
-    title: "About",
-    path: "/about",
+    title: "Producto",
+    path: "#",
+    children: [
+      { title: "Escalamiento del producto",path: "/about"},
+      { title: "Pruebas clinicas", path: "/blog"},
+      { title: "Producción", path: "/contact"},
+      { title: "Proceso de diseño", path: "/contact"}
+    ]
   },
   {
-    title: "Blog",
-    path: "/blog",
-  },
-  {
-    title: "Contact",
+    title: "Contacto",
     path: "/contact",
   },
 ];
+*/
+const menuitems = [
+  {
+    title: "Quienes somos",
+    path: "#",
+  },
+  {
+    title: "Producto",
+    path: "#",
+    children: [
+      { title: "Escalamiento del producto",path: "/"},
+      { title: "Pruebas clinicas", path: "/"},
+      { title: "Producción", path: "/"},
+      { title: "Proceso de diseño", path: "/"}
+    ]
+  },
+  {
+    title: "Contacto",
+    path: "/",
+  },
+];
+
 ---
 
 <Container>
@@ -39,9 +55,15 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
-          >
+          ><Picture
+          src={ubicuLogo1}
+          alt="Astronaut in the air"
+          widths={[200]}
+          aspectRatio={2.59}
+          sizes="(max-width: 100px) 100vw, 180px"
+          loading="eager"
+          format="avif"
+        />
         </a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-gray-800" />
@@ -81,8 +103,7 @@ const menuitems = [
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+        <Link href="#" size="md">Ingresar</Link>
       </div>
     </div>
   </header>

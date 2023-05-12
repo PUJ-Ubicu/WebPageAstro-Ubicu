@@ -5,7 +5,8 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://astroship.web3templates.com",
+  site: "https://PUJ-Ubicu..github.io",
+  base: "/WebPageAstro-Ubicu",
   integrations: [
     tailwind(),
     image({
