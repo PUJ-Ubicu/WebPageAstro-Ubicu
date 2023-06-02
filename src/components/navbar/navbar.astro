@@ -30,21 +30,20 @@ const menuitems = [
 const menuitems = [
   {
     title: "Quienes somos",
-    path: "#",
+    path: "/about",
   },
   {
     title: "Producto",
-    path: "#",
+    path: "",
     children: [
-      { title: "Escalamiento del producto",path: "/"},
-      { title: "Pruebas clinicas", path: "/"},
-      { title: "Producción", path: "/"},
-      { title: "Proceso de diseño", path: "/"}
+      { title: "Escalamiento del producto",path: "/escalamiento"},
+      { title: "Producción científica", path: "/produccion_cientifica"},
+      { title: "Proceso de diseño", path: "/proceso_design"}
     ]
   },
   {
     title: "Contacto",
-    path: "/",
+    path: "/contact",
   },
 ];
 
@@ -102,7 +101,7 @@ const menuitems = [
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <Link href="#" size="md">Ingresar</Link>
+        <Link href="https://www.ubicu.co" target="_blank" size="md">Ingresar</Link>
       </div>
     </div>
   </header>
