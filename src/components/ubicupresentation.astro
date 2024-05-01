@@ -1,6 +1,5 @@
 ---
 import { Picture } from "astro:assets"
-import systemImage from "assets/system.jpg"
 import Link from "@components/ui/link.astro"
 import UbicuLogoLanding from "assets/UbicuLogoLanding.png"
 ---
@@ -8,14 +7,15 @@ import UbicuLogoLanding from "assets/UbicuLogoLanding.png"
 <main
   class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
   <div class="py-6 md:order-1 md:block">
-    <Picture
-      src={systemImage}
-      alt="Astronaut in the air"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 800px) 100vw, 620px"
-      loading="eager"
-      format="avif"
-    />
+    <iframe
+      width="520"
+      height="361"
+      src="https://www.youtube.com/embed/7bGJ4g9P5Gg?si=lfDb_vxGtein22Nn"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
   <div>
     <a href="/" class="flex flex-col justify-center items-center">
