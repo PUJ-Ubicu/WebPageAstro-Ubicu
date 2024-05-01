@@ -1,8 +1,8 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import Pricing from "@components/pricing.astro";
+import Layout from "@layouts/Layout.astro"
+import Container from "@components/container.astro"
+import Sectionhead from "@components/sectionhead.astro"
+import Prcng from "@components/pricing.astro"
 
 const pricing = [
   {
@@ -61,7 +61,7 @@ const pricing = [
       link: "/contact",
     },
   },
-];
+]
 ---
 
 <Layout title="Pricing">
@@ -74,7 +74,7 @@ const pricing = [
     </Sectionhead>
 
     <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
-      {pricing.map((item) => <Pricing plan={item} />)}
+      {pricing.map((item) => <Prcng plan={item} />)}
     </div>
   </Container>
 </Layout>

@@ -1,36 +1,15 @@
 ---
 import Container from "@components/container.astro"
-import { Picture } from "astro:assets"
-import ubicuLogo1 from "assets/ubicuLogo1.png"
-import Link from "@components/ui/link.astro"
 import Dropdown from "./dropdown.astro"
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar"
-const menuitems = [
-  {
-    title: "Quienes somos",
-    path: "/about",
-  },
-  {
-    title: "Producto",
-    path: "",
-    children: [
-      { title: "Escalamiento del producto", path: "/escalamiento" },
-      { title: "Producción científica", path: "/produccion_cientifica" },
-      { title: "Proceso de diseño", path: "/proceso_design" },
-    ],
-  },
-  {
-    title: "Contacto",
-    path: "/contact",
-  },
-]
+import { menuitems } from "@content/menuItems"
 ---
 
 <Container>
   <header class="flex flex-col lg:flex-row justify-center items-center my-5">
     <Astronav>
       <div class="block lg:hidden">
-        <MenuIcon class="w-4 h-4 text-gray-800" />
+        <MenuIcon class="w-8 h-8 text-gray-800" />
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
@@ -58,9 +37,6 @@ const menuitems = [
             ))
           }
         </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" size="md">Ingresar</Link>
-        </div>
       </MenuItems>
     </Astronav>
   </header>

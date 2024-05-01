@@ -4,8 +4,8 @@ name: "Andres Navarro"
 title: "--"
 avatar:
   {
-    src: "https://raw.githubusercontent.com/PUJ-Ubicu/WebPageAstro-Ubicu/main/public/Equipo/AndresNavarro400x400.JPG",
-    alt: "Sebastian Garcia",
+    src: "/Equipo/AndresNavarro400x400.JPG",
+    alt: "Andres Navarro",
   }
 publishDate: "2023-05-01 10:00"
 ---

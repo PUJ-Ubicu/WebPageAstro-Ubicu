@@ -4,7 +4,7 @@ name: "Leonardo Arzayus"
 title: "--"
 avatar:
   {
-    src: "https://eu.ui-avatars.com/api/?name=Leonardo+Arzayus&size=280",
+    src: "/Equipo/Leonardo-Arzayus.svg",
     alt: "Leonardo Arzayus",
   }
 publishDate: "2023-05-01 10:00"

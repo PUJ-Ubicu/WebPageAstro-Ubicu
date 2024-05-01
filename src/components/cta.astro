@@ -1,16 +1,46 @@
 ---
-import Link from "./ui/link.astro";
+import Link from "./ui/link.astro"
+import { getCollection } from "astro:content"
+import { Picture } from "astro:assets"
+
+const publishedPartners = await getCollection("partners", ({ data }) => {
+  return !data.draft && data.publishDate < new Date()
+})
 ---
 
 <div
-  class="bg-primary p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
-  <h2 class="text-white text-4xl md:text-6xl tracking-tight">
-    Ingresa a la plataforma web
-  </h2>
-  <p class="text-white mt-4 text-lg md:text-xl">
-    Donde podras ver el desempeño de los pacientes y asignarles ejercicios
-  </p>
-  <div class="flex mt-5">
-    <Link href="https://www.ubicu.co" target=”_blank” style="inverted">Ingresar</Link>
+  class="p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
+  <div class="w-full bg-primary py-5 rounded-md">
+    <h2 class="text-white text-2xl md:text-4xl tracking-tight">
+      Patrocinado por
+    </h2>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mx-auto max-w-4xl mt-12">
+    {
+      publishedPartners.map((teamMemberEntry) => {
+        return (
+          <div class="group">
+            <div class="w-full aspect-square">
+              <Picture
+                src={teamMemberEntry.data.avatar.src}
+                alt={teamMemberEntry.data.avatar.alt}
+                sizes="(max-width: 800px) 100vw, 400px"
+                width={400}
+                height={400}
+                widths={[200, 400]}
+                class="w-full rounded transition group-hover:-translate-y-1 group-hover:shadow-xl max-h-[194px]"
+              />
+            </div>
+
+            <div class="mt-4 text-center">
+              <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
+              <h3 class="text-sm text-slate-500">
+                {teamMemberEntry.data.title}
+              </h3>
+            </div>
+          </div>
+        )
+      })
+    }
   </div>
 </div>
