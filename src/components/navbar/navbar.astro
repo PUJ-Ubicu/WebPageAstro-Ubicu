@@ -1,10 +1,10 @@
 ---
-import Container from "@components/container.astro";
-import { Picture } from "@astrojs/image/components";
-import ubicuLogo1 from "assets/ubicuLogo1.png";
-import Link from "@components/ui/link.astro";
-import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import Container from "@components/container.astro"
+import { Picture } from "astro:assets"
+import ubicuLogo1 from "assets/ubicuLogo1.png"
+import Link from "@components/ui/link.astro"
+import Dropdown from "./dropdown.astro"
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar"
 /*
 const menuitems = [
   {
@@ -36,17 +36,16 @@ const menuitems = [
     title: "Producto",
     path: "",
     children: [
-      { title: "Escalamiento del producto",path: "/escalamiento"},
-      { title: "Producción científica", path: "/produccion_cientifica"},
-      { title: "Proceso de diseño", path: "/proceso_design"}
-    ]
+      { title: "Escalamiento del producto", path: "/escalamiento" },
+      { title: "Producción científica", path: "/produccion_cientifica" },
+      { title: "Proceso de diseño", path: "/proceso_design" },
+    ],
   },
   {
     title: "Contacto",
     path: "/contact",
   },
-];
-
+]
 ---
 
 <Container>
@@ -55,14 +54,14 @@ const menuitems = [
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
           ><Picture
-          src={ubicuLogo1}
-          alt="Astronaut in the air"
-          widths={[200]}
-          aspectRatio={2.59}
-          sizes="(max-width: 100px) 100vw, 180px"
-          loading="eager"
-          format="avif"
-        />
+            src={ubicuLogo1}
+            alt="Astronaut in the air"
+            widths={[200]}
+            sizes="(max-width: 100px) 100vw, 180px"
+            loading="eager"
+            format="avif"
+            class="max-w-[180px] aspect-auto"
+          />
         </a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-gray-800" />
@@ -101,7 +100,9 @@ const menuitems = [
     </Astronav>
     <div>
       <div class="hidden lg:flex items-center gap-4">
-        <Link href="https://www.ubicu.co" target="_blank" size="md">Ingresar</Link>
+        <Link href="https://www.ubicu.co" target="_blank" size="md"
+          >Ingresar</Link
+        >
       </div>
     </div>
   </header>

@@ -1,28 +1,25 @@
 ---
-import { SEO } from "astro-seo";
-import Footer from "@components/footer.astro";
-import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource/inter/variable.css";
+import { SEO } from "astro-seo"
+import Footer from "@components/footer.astro"
+import Navbar from "@components/navbar/navbar.astro"
+import "@fontsource/inter"
 
 export interface Props {
-  title: string;
+  title: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
 
-const resolvedImageWithDomain = new URL(
-  "/opengraph.jpg",
-  Astro.site
-).toString();
+const resolvedImageWithDomain = new URL("/opengraph.jpg", Astro.site).toString()
 
-const { title } = Astro.props;
+const { title } = Astro.props
 
 const makeTitle = title
   ? title + " | " + "Ubicu"
-  : "Ubicu - Sistema incentivo respiratorio";
+  : "Ubicu - Sistema incentivo respiratorio"
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />

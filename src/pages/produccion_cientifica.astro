@@ -1,19 +1,22 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "@astrojs/image/components";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import { getCollection } from "astro:content"
+import { Picture } from "astro:assets"
+import Layout from "@layouts/Layout.astro"
+import Container from "@components/container.astro"
+import Sectionhead from "@components/sectionhead.astro"
 
 // Filter blog entries with 'draft: false' & date before current date
-const publishedBlogEntries = await getCollection("produccion_cientifica", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
-});
+const publishedBlogEntries = await getCollection(
+  "produccion_cientifica",
+  ({ data }) => {
+    return !data.draft && data.publishDate < new Date()
+  }
+)
 
 // Sort content entries by publication date
 publishedBlogEntries.sort(function (a, b) {
-  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf();
-});
+  return b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+})
 ---
 
 <Layout title="Blog">
@@ -21,7 +24,8 @@ publishedBlogEntries.sort(function (a, b) {
     <Sectionhead>
       <Fragment slot="title">Producción científica</Fragment>
       <Fragment slot="desc">
-        Presentación de los recursos cientificos, academicos e informativos de Ubicu.
+        Presentación de los recursos cientificos, academicos e informativos de
+        Ubicu.
       </Fragment>
     </Sectionhead>
     <main class="mt-16">
@@ -29,50 +33,49 @@ publishedBlogEntries.sort(function (a, b) {
         {
           publishedBlogEntries.map((blogPostEntry, index) => {
             const haslink = blogPostEntry.data.link.length > 0
-            const link = haslink ? blogPostEntry.data.link : `/produccion_cientifica/${blogPostEntry.slug}`
-            const target = haslink ? '_blank' : '_self'
+            const link = haslink
+              ? blogPostEntry.data.link
+              : `/produccion_cientifica/${blogPostEntry.slug}`
+            const target = haslink ? "_blank" : "_self"
             return (
-            <li>
-              <a href={link} target={target}>
-                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
-                  <Picture
-                    src={blogPostEntry.data.image.src}
-                    alt={blogPostEntry.data.image.alt}
-                    sizes="(max-width: 800px) 100vw, 800px"
-                    widths={[200, 400, 800]}
-                    aspectRatio="16:9"
-                    background="#ffffff"
-                    fit="cover"
-                    position="center"
-                    loading={index <= 2 ? "eager" : "lazy"}
-                    decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-md"
-                  />
-                  <div>
-                    <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-                      {blogPostEntry.data.category}
-                    </span>
-
-                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
-                      {blogPostEntry.data.title}
-                    </h2>
-
-                    <div class="flex gap-2 mt-3">
-                      <span class="text-gray-400">
-                        {blogPostEntry.data.author}
+              <li>
+                <a href={link} target={target}>
+                  <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                    <Picture
+                      src={blogPostEntry.data.image.src}
+                      alt={blogPostEntry.data.image.alt}
+                      sizes="(max-width: 800px) 100vw, 800px"
+                      widths={[200, 400, 800]}
+                      loading={index <= 2 ? "eager" : "lazy"}
+                      decoding={index <= 2 ? "sync" : "async"}
+                      class="w-full rounded-md aspect-video"
+                    />
+                    <div>
+                      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+                        {blogPostEntry.data.category}
                       </span>
-                      <span class="text-gray-400">• </span>
-                      <time
-                        class="text-gray-400"
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
-                        {blogPostEntry.data.publishDate.toDateString()}
-                      </time>
+
+                      <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
+                        {blogPostEntry.data.title}
+                      </h2>
+
+                      <div class="flex gap-2 mt-3">
+                        <span class="text-gray-400">
+                          {blogPostEntry.data.author}
+                        </span>
+                        <span class="text-gray-400">• </span>
+                        <time
+                          class="text-gray-400"
+                          datetime={blogPostEntry.data.publishDate.toISOString()}>
+                          {blogPostEntry.data.publishDate.toDateString()}
+                        </time>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </li>
-          )})
+                </a>
+              </li>
+            )
+          })
         }
       </ul>
     </main>

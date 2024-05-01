@@ -8,23 +8,27 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "createAssets": "node ./scripts/createAvatars.js"
   },
   "dependencies": {
-    "@astrojs/image": "^0.14.1",
-    "@astrojs/mdx": "^0.16.0",
-    "@astrojs/sitemap": "^1.0.1",
-    "@astrojs/tailwind": "^3.0.1",
-    "@fontsource/inter": "^4.5.15",
-    "astro": "^2.0.11",
+    "@astrojs/mdx": "^2.3.1",
+    "@astrojs/sitemap": "^3.1.4",
+    "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/inter": "^5.0.18",
+    "astro": "^4.7.0",
     "astro-feather-icons": "^1.0.2",
-    "astro-icon": "^0.8.0",
-    "astro-navbar": "^1.1.5",
-    "astro-seo": "^0.7.0",
-    "tailwindcss": "^3.2.4"
+    "astro-icon": "^1.1.0",
+    "astro-navbar": "^2.3.2",
+    "astro-seo": "^0.8.3",
+    "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
-    "sharp": "^0.31.3"
+    "@dicebear/collection": "^8.0.1",
+    "@dicebear/core": "^8.0.1",
+    "@iconify-json/bx": "^1.1.10",
+    "@iconify-json/uil": "^1.1.8",
+    "@tailwindcss/typography": "^0.5.13",
+    "sharp": "^0.33.3"
   }
 }

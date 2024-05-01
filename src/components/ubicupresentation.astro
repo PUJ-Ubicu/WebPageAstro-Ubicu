@@ -1,8 +1,7 @@
 ---
-import { Picture } from "@astrojs/image/components";
-import systemImage from "assets/system.jpg";
-import Link from "@components/ui/link.astro";
-import { Icon } from "astro-icon";
+import { Picture } from "astro:assets"
+import systemImage from "assets/system.jpg"
+import Link from "@components/ui/link.astro"
 ---
 
 <main
@@ -12,7 +11,6 @@ import { Icon } from "astro-icon";
       src={systemImage}
       alt="Astronaut in the air"
       widths={[200, 400, 600]}
-      aspectRatio="4:3"
       sizes="(max-width: 800px) 100vw, 620px"
       loading="eager"
       format="avif"
@@ -24,16 +22,19 @@ import { Icon } from "astro-icon";
       Ubicu: sistema incentivo respiratorio
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      El proyecto incentivo respiratorio busca desarrollar un producto tecnológico, 
-      hardware y software, que apoye la recuperación de la función pulmonar.
-      <wbr /> Nuestro sistema favorece una recuperación ágil para retornar a la vida laboral y productiva.
+      UBICU es un producto de apoyo para la fisioterapia respiratoria con
+      incentivo. UBICU permite al paciente realizar sus ejercicios respiratorios
+      de una manera entretenida con un videojuego desde la comodidad de su hogar
+      con supervisión remota. UBICU brinda al fisioterapeuta una plataforma en
+      la nube para ampliar el servicio de fisioterapia respiratoria e
+      información cuantitativa del desempeño de los pacientes.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
         href="#"
         class="bg-white border-primary text-primary flex gap-1 items-center justify-center"
         rel="noopener">
-          <span class="text-primary"> Contacta con nosotros </span>
+        <span class="text-primary"> Contacta con nosotros </span>
       </Link>
     </div>
   </div>
