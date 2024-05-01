@@ -1,0 +1,60 @@
+---
+import { SEO } from "astro-seo"
+import Footer from "@components/footer.astro"
+import NavbarLanding from "@components/navbar/navbarlanding.astro"
+import "@fontsource/inter"
+
+export interface Props {
+  title: string
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
+
+const resolvedImageWithDomain = new URL("/opengraph.jpg", Astro.site).toString()
+
+const { title } = Astro.props
+
+const makeTitle = title
+  ? title + " | " + "Ubicu"
+  : "Ubicu - Sistema incentivo respiratorio"
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
+    <SEO
+      title={makeTitle}
+      description="Ubicu - Sistema incentivo respiratorio"
+      canonical={canonicalURL}
+      openGraph={{
+        basic: {
+          url: canonicalURL,
+          type: "website",
+          title: `Ubicu - Sistema incentivo respiratorio`,
+          image: resolvedImageWithDomain,
+        },
+        image: {
+          alt: "Ubicu Homepage Screenshot",
+        },
+      }}
+    />
+  </head>
+  <body>
+    <NavbarLanding />
+    <slot />
+    <Footer />
+    <style is:global>
+      /* Improve Page speed */
+      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>
