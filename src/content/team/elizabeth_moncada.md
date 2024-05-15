@@ -1,6 +1,6 @@
 ---
 draft: false
-name: "Elizabeth Moncada"
+name: "Elizabeth Moncada, Msc"
 title: "Desarollador de software"
 avatar:
   {

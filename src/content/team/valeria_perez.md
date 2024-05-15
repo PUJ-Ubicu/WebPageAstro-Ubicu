@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Valeria Perez"
-title: "--"
+title: "Estudios clínicos"
 avatar:
   {
     src: "/Equipo/ValeriaPerez400x400.JPG",

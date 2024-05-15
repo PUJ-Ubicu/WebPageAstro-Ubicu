@@ -1,6 +1,6 @@
 ---
 draft: false
-name: "Jaime Aguilar"
+name: "Jaime Aguilar, PhD"
 title: "Director del proyecto"
 avatar:
   {

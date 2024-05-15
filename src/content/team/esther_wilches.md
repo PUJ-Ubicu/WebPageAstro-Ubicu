@@ -1,7 +1,7 @@
 ---
 draft: false
-name: "Esther Wilches"
-title: "--"
+name: "Esther Wilches, PhD"
+title: "Coinvestigador"
 avatar:
   {
     src: "/Equipo/Esther-Wilches.svg",

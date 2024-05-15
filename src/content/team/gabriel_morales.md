@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Gabriel Morales"
-title: "Diseñador grafico"
+title: "Diseño Visual"
 avatar:
   {
     src: "/Equipo/GabrielMorales400x400.JPG",

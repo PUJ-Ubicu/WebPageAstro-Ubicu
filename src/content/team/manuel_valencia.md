@@ -1,7 +1,7 @@
 ---
 draft: false
-name: "Manuel Valencia"
-title: "Director del proyecto"
+name: "Manuel Valencia, Msc"
+title: "Coinvestigador"
 avatar:
   {
     src: "/Equipo/ManuelValencia400x400.JPG",

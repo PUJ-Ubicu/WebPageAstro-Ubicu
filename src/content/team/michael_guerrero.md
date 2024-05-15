@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Michael Guerrero"
-title: "--"
+title: "Desarrollador de software"
 avatar:
   {
     src: "/Equipo/MichaelGuerrero400x400.JPG",

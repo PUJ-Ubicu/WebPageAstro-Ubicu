@@ -1,7 +1,7 @@
 ---
 draft: false
-name: "Leonardo Arzayus"
-title: "--"
+name: "Leonardo Arzayus, Msc"
+title: "Estudios clínicos"
 avatar:
   {
     src: "/Equipo/Leonardo-Arzayus.svg",

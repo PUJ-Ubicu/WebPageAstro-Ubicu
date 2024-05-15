@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Melissa Ramirez"
-title: "--"
+title: "Escalamiento del producto"
 avatar:
   {
     src: "/Equipo/MelissaRamirez400x400.JPG",

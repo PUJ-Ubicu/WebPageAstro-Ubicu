@@ -1,7 +1,7 @@
 ---
 draft: false
-name: "Andres Navarro"
-title: "--"
+name: "Andres Navarro, PhD"
+title: "Coinvestigador"
 avatar:
   {
     src: "/Equipo/AndresNavarro400x400.JPG",

@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Jose Angel Quintero"
-title: "--"
+title: "Diseño Industrial"
 avatar:
   {
     src: "/Equipo/JoseAngelQuintero400x400.JPG",
