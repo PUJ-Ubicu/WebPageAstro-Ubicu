@@ -1,5 +1,5 @@
 ---
-import Button from "./ui/button.astro";
+import Button from "./ui/button.astro"
 ---
 
 <!-- To make this contact form work, create your free access key from https://web3forms.com/
@@ -10,7 +10,11 @@ import Button from "./ui/button.astro";
   id="form"
   class="needs-validation"
   novalidate>
-  <input type="hidden" name="access_key" value="230994a2-6a75-4e4f-a71b-4edbbb622b0a" />
+  <input
+    type="hidden"
+    name="access_key"
+    value="f6fe1e23-85e4-4756-a281-f249b0833b0e"
+  />
   <!-- Create your free access key from https://web3forms.com/ -->
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
   <div class="mb-5">
@@ -77,21 +81,22 @@ import Button from "./ui/button.astro";
 </style>
 
 <script is:inline>
-  const form = document.getElementById("form");
-  const result = document.getElementById("result");
+  const form = document.getElementById("form")
+  const result = document.getElementById("result")
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    form.classList.add("was-validated");
+    e.preventDefault()
+    form.classList.add("was-validated")
     if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
-      return;
+      form.querySelectorAll(":invalid")[0].focus()
+      return
     }
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    const formData = new FormData(form)
+    const object = Object.fromEntries(formData)
+    const json = JSON.stringify(object)
 
-    result.innerHTML = "Sending...";
+    result.innerHTML = "Sending..."
+    console.log("json to send", json)
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -102,26 +107,26 @@ import Button from "./ui/button.astro";
       body: json,
     })
       .then(async (response) => {
-        let json = await response.json();
+        let json = await response.json()
         if (response.status == 200) {
-          result.classList.add("text-green-500");
-          result.innerHTML = json.message;
+          result.classList.add("text-green-500")
+          result.innerHTML = json.message
         } else {
-          console.log(response);
-          result.classList.add("text-red-500");
-          result.innerHTML = json.message;
+          console.log(response)
+          result.classList.add("text-red-500")
+          result.innerHTML = json.message
         }
       })
       .catch((error) => {
-        console.log(error);
-        result.innerHTML = "Something went wrong!";
+        console.log(error)
+        result.innerHTML = "Something went wrong!"
       })
       .then(function () {
-        form.reset();
-        form.classList.remove("was-validated");
+        form.reset()
+        form.classList.remove("was-validated")
         setTimeout(() => {
-          result.style.display = "none";
-        }, 5000);
-      });
-  });
+          result.style.display = "none"
+        }, 5000)
+      })
+  })
 </script>
