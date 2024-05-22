@@ -3,6 +3,8 @@ import { SEO } from "astro-seo"
 import Footer from "@components/footer.astro"
 import NavbarLanding from "@components/navbar/navbarlanding.astro"
 import "@fontsource/inter"
+import { ViewTransitions } from "astro:transitions"
+import { fade } from "astro:transitions"
 
 export interface Props {
   title: string
@@ -20,7 +22,7 @@ const makeTitle = title
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" transition:animate={fade({ duration: "0.8s" })}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -44,6 +46,7 @@ const makeTitle = title
         },
       }}
     />
+    <ViewTransitions />
   </head>
   <body>
     <NavbarLanding />
