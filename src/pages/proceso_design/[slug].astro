@@ -1,20 +1,20 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
+import { getCollection } from "astro:content"
+import Layout from "@layouts/Layout.astro"
+import Container from "@components/container.astro"
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("proceso_design");
+  const blogEntries = await getCollection("proceso_design")
   return blogEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
-  }));
+  }))
 }
 
 // Get the entry directly from the prop on render
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { entry } = Astro.props
+const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title}>
@@ -53,9 +53,9 @@ const { Content } = await entry.render();
     </div>
     <div class="text-center mt-8">
       <a
-        href="/blog"
+        href="/proceso_design"
         class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
-        >← Back to Blog</a
+        >← Regresar a proceso de diseño</a
       >
     </div>
   </Container>
