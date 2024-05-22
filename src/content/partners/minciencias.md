@@ -1,6 +1,6 @@
 ---
 draft: false
-name: "Ministerio de ciencias tecnologia e información"
+name: "Ministerio de Ciencia Tecnología e Innovación"
 title: "Promotor"
 avatar:
   {
