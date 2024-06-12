@@ -1,7 +1,7 @@
 ---
 draft: false
 name: "Juan David Garcia"
-title: "Desarrollador de hardware"
+title: "Ingeniero de hardware y firmware"
 avatar:
   {
     src: "/Equipo/JuanDavidGarcia400x400.JPG",
