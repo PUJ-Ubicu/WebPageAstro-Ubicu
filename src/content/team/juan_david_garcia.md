@@ -1,6 +1,6 @@
 ---
 draft: false
-name: "Juan David Garcia"
+name: "Juan David Garcia, Msc"
 title: "Ingeniero de hardware y firmware"
 avatar:
   {
