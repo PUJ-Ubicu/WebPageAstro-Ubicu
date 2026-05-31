@@ -277,4 +277,16 @@ const enPath = alternatePath(Astro.url, "en")
   .nav-cta {
     white-space: nowrap;
   }
+
+  /* Mobile: when the hamburger menu is open, the dropdown sits over page
+     content. Give the whole expanded nav a solid backdrop so the content
+     behind it doesn't show through. (On desktop the menu is inline, and
+     when scrolled the nav already has its translucent background.) */
+  @media (max-width: 1023px) {
+    .nav:has(.nav-menu:not(.hidden)) {
+      background: var(--color-paper);
+      box-shadow: 0 16px 40px -24px rgba(15, 27, 61, 0.45);
+      border-bottom: 1px solid var(--color-line);
+    }
+  }
 </style>

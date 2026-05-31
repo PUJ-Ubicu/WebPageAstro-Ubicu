@@ -145,5 +145,17 @@
     }, 2500)
   }
 
+  // Keep the `js` flag on <html> across ClientRouter navigations. On each
+  // swap, ClientRouter resets <html> to the destination's static attributes,
+  // which don't include the runtime-added `js` class — stripping it would drop
+  // the `html.js .reveal { opacity:0 }` hidden state, so reveal elements paint
+  // already-visible and their entrance animations never play. `astro:after-swap`
+  // fires before the new page paints, so re-adding it here keeps reveals hidden
+  // until the IntersectionObserver animates them in.
+  function markJs() {
+    document.documentElement.classList.add("js")
+  }
+  markJs()
+  document.addEventListener("astro:after-swap", markJs)
   document.addEventListener("astro:page-load", initLanding)
 </script>
