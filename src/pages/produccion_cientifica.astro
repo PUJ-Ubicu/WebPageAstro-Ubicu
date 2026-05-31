@@ -35,7 +35,7 @@ publishedBlogEntries.sort(function (a, b) {
             const haslink = blogPostEntry.data.link.length > 0
             const link = haslink
               ? blogPostEntry.data.link
-              : `/produccion_cientifica/${blogPostEntry.slug}`
+              : `/produccion_cientifica/${blogPostEntry.id}`
             const target = haslink ? "_blank" : "_self"
             return (
               <li>

@@ -1,9 +1,22 @@
 // 1. Import utilities from `astro:content`
 import { z, defineCollection } from "astro:content"
+import { glob } from "astro/loaders"
+
+// The Content Layer glob loader slugifies (lowercases) ids by default, which
+// would change existing URLs (e.g. /escalamiento/TRL1 -> /escalamiento/trl1).
+// Replicate the legacy collections behavior: id = file path minus extension,
+// preserving original case, so public URLs stay identical.
+const keepCaseId = ({ entry }: { entry: string }) =>
+  entry.replace(/\.[^/.]+$/, "")
 
 // 2. Define your collection(s)
 
 const escalamientoCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/escalamiento",
+    generateId: keepCaseId,
+  }),
   schema: ({ image }) =>
     z.object({
       draft: z.boolean(),
@@ -21,6 +34,11 @@ const escalamientoCollection = defineCollection({
 })
 
 const produccionCientificaCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/produccion_cientifica",
+    generateId: keepCaseId,
+  }),
   schema: ({ image }) =>
     z.object({
       draft: z.boolean(),
@@ -39,6 +57,11 @@ const produccionCientificaCollection = defineCollection({
 })
 
 const procesoDesignProductoCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/proceso_design",
+    generateId: keepCaseId,
+  }),
   schema: ({ image }) =>
     z.object({
       draft: z.boolean(),
@@ -56,6 +79,11 @@ const procesoDesignProductoCollection = defineCollection({
 })
 
 const teamCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/team",
+    generateId: keepCaseId,
+  }),
   schema: z.object({
     draft: z.boolean(),
     name: z.string(),
@@ -69,6 +97,11 @@ const teamCollection = defineCollection({
 })
 
 const partnersCollection = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/partners",
+    generateId: keepCaseId,
+  }),
   schema: z.object({
     draft: z.boolean(),
     name: z.string(),

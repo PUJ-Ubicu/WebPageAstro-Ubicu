@@ -4,7 +4,8 @@ import { fade } from "astro:transitions"
 import Footer from "@components/footer.astro"
 import Navbar from "@components/navbar/navbar.astro"
 import "@fontsource/inter"
-import { ViewTransitions } from "astro:transitions"
+import "../styles/global.css"
+import { ClientRouter } from "astro:transitions"
 
 export interface Props {
   title: string
@@ -46,7 +47,7 @@ const makeTitle = title
         },
       }}
     />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <Navbar />

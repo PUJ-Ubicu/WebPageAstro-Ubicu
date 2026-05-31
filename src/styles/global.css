@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Tailwind v4 ships a full default color palette. The previous v3 config
+ * replaced the palette with a small custom set, so numbered shades like
+ * `gray-400` / `bg-gray-100` produced no CSS. We reset the color namespace
+ * here to preserve that exact behavior (zero visual change), then redefine
+ * only the custom colors.
+ */
+@theme {
+  --color-*: initial;
+  --color-primary: #22397c;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-purple: #7e5bef;
+  --color-pink: #ff49db;
+  --color-orange: #ff7849;
+  --color-green: #13ce66;
+  --color-yellow: #ffc82c;
+  --color-gray-dark: #273444;
+  --color-gray: #8492a6;
+  --color-gray-light: #d3dce6;
+
+  --font-sans: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}

@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content"
-import { Picture } from "astro:assets"
+import { Image } from "astro:assets"
 import Layout from "@layouts/Layout.astro"
 import Container from "@components/container.astro"
 import Sectionhead from "@components/sectionhead.astro"
@@ -36,13 +36,12 @@ const urlReferenciaTRL =
         {
           publishedBlogEntries.map((blogPostEntry, index) => (
             <li>
-              <a href={`/escalamiento/${blogPostEntry.slug}`}>
+              <a href={`/escalamiento/${blogPostEntry.id}`}>
                 <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
-                  <Picture
+                  <Image
                     src={blogPostEntry.data.image.src}
                     alt={blogPostEntry.data.image.alt}
-                    sizes="(max-width: 800px) 100vw, 800px"
-                    widths={[200, 400, 800]}
+                    format="svg"
                     loading={index <= 2 ? "eager" : "lazy"}
                     decoding={index <= 2 ? "sync" : "async"}
                     class="w-full rounded-md aspect-video"

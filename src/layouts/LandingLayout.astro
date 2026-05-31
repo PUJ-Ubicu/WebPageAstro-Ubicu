@@ -3,7 +3,8 @@ import { SEO } from "astro-seo"
 import Footer from "@components/footer.astro"
 import NavbarLanding from "@components/navbar/navbarlanding.astro"
 import "@fontsource/inter"
-import { ViewTransitions } from "astro:transitions"
+import "../styles/global.css"
+import { ClientRouter } from "astro:transitions"
 import { fade } from "astro:transitions"
 
 export interface Props {
@@ -46,7 +47,7 @@ const makeTitle = title
         },
       }}
     />
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <NavbarLanding />
