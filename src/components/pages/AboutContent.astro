@@ -57,7 +57,7 @@ const publishedPartners = await getCollection("partners", ({ data }) => {
     {
       publishedPartners.map((partner) => (
         <div class="group">
-          <div class="w-full aspect-square">
+          <div class="w-full aspect-square flex items-center justify-center">
             <Picture
               src={partner.data.avatar.src}
               alt={partner.data.avatar.alt}

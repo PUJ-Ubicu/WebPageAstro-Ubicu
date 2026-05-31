@@ -37,7 +37,7 @@ const cards = entries.map(({ entry, slug }, index) => {
     <Fragment slot="title">{t(meta.titleKey)}</Fragment>
     <Fragment slot="desc" set:html={t(meta.descKey)} />
   </Sectionhead>
-  <main class="mt-16">
+  <main class="mt-16 pb-24">
     <ul class="grid gap-16 max-w-4xl mx-auto">
       {
         cards.map((card) => (
