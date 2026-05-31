@@ -1,0 +1,128 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const steps = [
+  { n: "1", d: "1", t: t("h1.t"), p: t("h1.d"), g: t("h1.g") },
+  { n: "2", d: "2", t: t("h2.t"), p: t("h2.d"), g: t("h2.g") },
+  { n: "3", d: "3", t: t("h3.t"), p: t("h3.d"), g: t("h3.g") },
+  { n: "4", d: "4", t: t("h4.t"), p: t("h4.d"), g: t("h4.g") },
+]
+---
+
+<section class="section-shell how" id="how">
+  <div class="site-container">
+    <div class="section-head">
+      <p class="kick reveal">{t("how.kick")}</p>
+      <h2 class="reveal" data-d="1">{t("how.h2")}</h2>
+      <p class="reveal" data-d="2">{t("how.p")}</p>
+    </div>
+    <div class="how-wrap">
+      <div class="how-line"><div class="progress"></div></div>
+      <div class="steps">
+        {
+          steps.map((s) => (
+            <div class="step reveal" data-d={s.d}>
+              <div class="marker"><span class="num">{s.n}</span></div>
+              <h3>{s.t}</h3>
+              <p>{s.p}</p>
+              <span class="stag">{s.g}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--color-paper);
+  }
+  .how-wrap {
+    margin-top: 66px;
+    position: relative;
+  }
+  .how-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 38px;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--color-line) 0 10px, transparent 10px 18px);
+  }
+  .how-line .progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--color-cyan), var(--color-coral));
+    transition: width 1.2s var(--ease-brand);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+  }
+  .step {
+    position: relative;
+  }
+  .step .marker {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: var(--color-white);
+    border: 2px solid var(--color-line);
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 2;
+    transition:
+      border-color 0.4s,
+      box-shadow 0.4s;
+  }
+  .step .marker .num {
+    font-family: var(--font-disp);
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--color-navy);
+  }
+  .step.in .marker {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent) 12%, transparent);
+  }
+  .step h3 {
+    font-size: 20px;
+    color: var(--color-navy);
+    margin: 26px 0 10px;
+  }
+  .step p {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-muted);
+  }
+  .step .stag {
+    display: inline-block;
+    margin-top: 14px;
+    font: 600 12px var(--font-disp);
+    letter-spacing: 0.04em;
+    color: var(--color-cyan-deep);
+    background: color-mix(in srgb, var(--color-cyan) 14%, transparent);
+    padding: 5px 11px;
+    border-radius: 999px;
+  }
+  @media (max-width: 980px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 28px;
+    }
+    .how-line {
+      display: none;
+    }
+  }
+  @media (max-width: 560px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

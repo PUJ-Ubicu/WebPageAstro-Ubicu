@@ -26,7 +26,7 @@ const urlReferenciaTRL =
       <Fragment slot="desc">
         Presentación de ubicu en los distintos niveles de maduación tecnologica
         (<a
-          class="no-underline hover:underline text-primary"
+          class="no-underline hover:underline text-navy"
           href={urlReferenciaTRL}>TRL</a
         >).
       </Fragment>
@@ -56,12 +56,12 @@ const urlReferenciaTRL =
                     </h2>
 
                     <div class="flex gap-2 mt-3">
-                      <span class="text-gray-400">
+                      <span class="text-muted-2">
                         {blogPostEntry.data.author}
                       </span>
-                      <span class="text-gray-400">• </span>
+                      <span class="text-muted-2">• </span>
                       <time
-                        class="text-gray-400"
+                        class="text-muted-2"
                         datetime={blogPostEntry.data.publishDate.toISOString()}>
                         {blogPostEntry.data.publishDate.toDateString()}
                       </time>

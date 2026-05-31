@@ -10,7 +10,8 @@
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],
       "@pages/*": ["pages/*"],
-      "@content/*": ["content/*"]
+      "@content/*": ["content/*"],
+      "@i18n/*": ["i18n/*"]
     }
   }
 }

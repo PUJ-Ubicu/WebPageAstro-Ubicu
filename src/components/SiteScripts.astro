@@ -1,0 +1,149 @@
+---
+// Shared client behavior: scroll reveals, nav translucency, hero counters,
+// how-it-works progress line, and lazy YouTube embed.
+// Ported from ../Ubicu Landing/assets/landing.js (minus i18n/tweaks).
+// Runs on astro:page-load so it re-binds after ClientRouter navigations.
+---
+
+<script>
+  const VIDEO_ID = "NKMb4jWEmXU"
+
+  function loadVideo(stage: HTMLElement | null) {
+    if (!stage || stage.dataset.loaded) return
+    stage.dataset.loaded = "1"
+    const f = document.createElement("iframe")
+    f.src = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    f.allowFullscreen = true
+    f.title = "Ubicu"
+    stage.appendChild(f)
+    stage.querySelectorAll<HTMLElement>(".play-big,.vscrim,.vlabel,.poster").forEach((e) => {
+      e.style.transition = "opacity .35s"
+      e.style.opacity = "0"
+      setTimeout(() => {
+        e.style.display = "none"
+      }, 360)
+    })
+  }
+
+  async function countUp() {
+    const els = document.querySelectorAll<HTMLElement>(".hero-stats .n[data-count]")
+    if (!els.length) return
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    let anime: any = null
+    if (!reduce) {
+      try {
+        anime = (await import("animejs")).default
+      } catch (_) {
+        anime = null
+      }
+    }
+    els.forEach((el) => {
+      const target = parseFloat(el.dataset.count || "0")
+      const pre = el.dataset.pre || ""
+      const suf = el.dataset.suf || ""
+      if (anime) {
+        const o = { v: 0 }
+        anime({
+          targets: o,
+          v: target,
+          duration: 1400,
+          easing: "easeOutExpo",
+          round: 1,
+          update: () => {
+            el.innerHTML = pre + o.v + '<span class="u">' + suf + "</span>"
+          },
+        })
+      } else {
+        el.innerHTML = pre + target + '<span class="u">' + suf + "</span>"
+      }
+    })
+  }
+
+  function initObservers() {
+    if (!("IntersectionObserver" in window)) {
+      document.querySelectorAll(".reveal").forEach((e) => e.classList.add("in"))
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (!en.isIntersecting) return
+          en.target.classList.add("in")
+          io.unobserve(en.target)
+        })
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    )
+    document.querySelectorAll(".reveal,.step").forEach((el) => io.observe(el))
+
+    const hero = document.querySelector(".hero")
+    if (hero) {
+      const hio = new IntersectionObserver(
+        (entries, obs) => {
+          if (!entries[0].isIntersecting) return
+          obs.disconnect()
+          countUp()
+        },
+        { threshold: 0.3 }
+      )
+      hio.observe(hero)
+    }
+
+    const how = document.querySelector(".how-wrap")
+    if (how) {
+      const pio = new IntersectionObserver(
+        (entries, obs) => {
+          if (!entries[0].isIntersecting) return
+          obs.disconnect()
+          const pr = document.querySelector<HTMLElement>(".how-line .progress")
+          if (pr) setTimeout(() => (pr.style.width = "100%"), 200)
+        },
+        { threshold: 0.4 }
+      )
+      pio.observe(how)
+    }
+  }
+
+  let scrollBound = false
+  function initNav() {
+    const onScroll = () => {
+      const nav = document.querySelector(".nav")
+      if (nav) nav.classList.toggle("scrolled", window.scrollY > 24)
+    }
+    onScroll()
+    if (!scrollBound) {
+      window.addEventListener("scroll", onScroll, { passive: true })
+      scrollBound = true
+    }
+  }
+
+  function initVideoTriggers() {
+    document.querySelectorAll<HTMLElement>("[data-video-trigger]").forEach((el) => {
+      if (el.dataset.vbound) return
+      el.dataset.vbound = "1"
+      el.addEventListener("click", () => {
+        const stage = document.querySelector<HTMLElement>(".video-stage")
+        if (!stage) return
+        const top = stage.getBoundingClientRect().top + window.scrollY - 90
+        window.scrollTo({ top, behavior: "smooth" })
+        loadVideo(stage)
+      })
+    })
+  }
+
+  function initLanding() {
+    document.documentElement.classList.add("js")
+    initNav()
+    initObservers()
+    initVideoTriggers()
+    // Failsafe: if observers produced nothing, reveal everything.
+    setTimeout(() => {
+      if (document.querySelectorAll(".reveal.in").length === 0) {
+        document.querySelectorAll(".reveal").forEach((e) => e.classList.add("in"))
+      }
+    }, 2500)
+  }
+
+  document.addEventListener("astro:page-load", initLanding)
+</script>

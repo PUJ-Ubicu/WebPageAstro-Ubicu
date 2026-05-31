@@ -1,0 +1,85 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<section class="cta" id="contact">
+  <div class="cta-rings"><span></span><span></span><span></span></div>
+  <div class="site-container cta-inner">
+    <h2 class="reveal">{t("cta.h2")}</h2>
+    <p class="reveal" data-d="1">{t("cta.p")}</p>
+    <div class="cta-acts reveal" data-d="2">
+      <a href="mailto:hola@ubicu.co" class="btn btn-primary">{t("cta.b1")}</a>
+      <button class="btn btn-ghost" type="button" data-video-trigger>{t("cta.b2")}</button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-deep) 70%);
+    color: #fff;
+  }
+  .cta-inner {
+    position: relative;
+    text-align: center;
+    padding: clamp(80px, 11vw, 140px) 0;
+  }
+  .cta h2 {
+    font-size: clamp(38px, 5.5vw, 72px);
+    color: #fff;
+    max-width: 18ch;
+    margin: 0 auto;
+  }
+  .cta p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 19px;
+    margin: 24px auto 38px;
+    max-width: 50ch;
+    line-height: 1.55;
+  }
+  .cta-acts {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta :global(.btn-ghost) {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+  .cta :global(.btn-ghost:hover) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+  }
+  .cta-rings {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 680px;
+    height: 680px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .cta-rings span {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(127, 208, 232, 0.25);
+    animation: breathe 8s ease-in-out infinite;
+  }
+  .cta-rings span:nth-child(2) {
+    inset: 120px;
+    border-color: rgba(240, 143, 101, 0.25);
+    animation-direction: reverse;
+  }
+  .cta-rings span:nth-child(3) {
+    inset: 240px;
+    border-color: rgba(127, 208, 232, 0.2);
+  }
+</style>

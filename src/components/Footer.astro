@@ -1,0 +1,116 @@
+---
+import { getLangFromUrl, useTranslations, localizedPath } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const home = localizedPath("/", lang)
+const year = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <div class="site-container">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <a class="brand" href={home}>
+          <img src="/ubicu-mark.svg" alt="Ubicu" width="36" height="36" />
+          ubicu
+        </a>
+        <p class="footer-blurb">{t("f.blurb")}</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>{t("f.col1")}</h4>
+          <a href={`${home}#how`}>{t("f.l1")}</a>
+          <a href={`${home}#features`}>{t("f.l2")}</a>
+          <a href={`${home}#video`}>{t("f.l3")}</a>
+          <a href={`${home}#sponsors`}>{t("spon.kick")}</a>
+        </div>
+        <div class="footer-col">
+          <h4>{t("f.col2")}</h4>
+          <a href={localizedPath("/about", lang)}>{t("f.l4")}</a>
+          <a href={localizedPath("/contact", lang)}>{t("f.l5")}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {year} {t("f.rights")}</span>
+      <span>{t("f.location")}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-ink);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 64px 0 40px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-family: var(--font-disp);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-decoration: none;
+  }
+  .brand img {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: #fff;
+    padding: 3px;
+  }
+  .footer-blurb {
+    max-width: 34ch;
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-top: 18px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .footer-cols {
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+  .footer-col h4 {
+    font-family: var(--font-disp);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    margin-bottom: 11px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover {
+    color: var(--color-cyan-lt);
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 28px;
+    font-size: 13.5px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+</style>

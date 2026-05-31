@@ -1,0 +1,122 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const sponsors = [
+  { logo: "/Partners/PUJC.jpeg", name: "Pontificia Universidad Javeriana Cali" },
+  { logo: "/Partners/minciencias.png", name: "Ministerio de Ciencia, Tecnología e Innovación" },
+  { logo: "/Partners/PromPack.webp", name: "PromPack" },
+  { logo: "/Partners/Univalle.png", name: "Universidad del Valle" },
+]
+---
+
+<section class="section-shell sponsors" id="sponsors">
+  <div class="site-container">
+    <p class="kick reveal sp-kick">{t("spon.kick")}</p>
+    <div class="sponsor-grid">
+      {
+        sponsors.map((s, i) => (
+          <div class="sponsor reveal" data-d={String(i + 1)}>
+            <span class="sp-logo">
+              <img src={s.logo} alt={s.name} loading="lazy" />
+            </span>
+            <span class="sp-name">{s.name}</span>
+            <span class="sp-role">{t("spon.role")}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .sponsors {
+    background: var(--color-white);
+    text-align: center;
+  }
+  .sp-kick {
+    display: block;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .sponsor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    align-items: start;
+  }
+  .sponsor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .sp-logo {
+    width: 100%;
+    height: 108px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    overflow: hidden;
+    filter: grayscale(1);
+    opacity: 0.78;
+    transition:
+      filter 0.35s,
+      opacity 0.35s,
+      transform 0.35s,
+      box-shadow 0.35s;
+  }
+  .sp-logo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .sponsor:hover .sp-logo {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -20px rgba(15, 27, 61, 0.3);
+  }
+  .sp-name {
+    font-family: var(--font-disp);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-navy);
+    line-height: 1.25;
+    max-width: 22ch;
+    text-wrap: balance;
+    min-height: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sp-role {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--color-muted-2);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  @media (max-width: 980px) {
+    .sponsor-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px 30px;
+    }
+  }
+  @media (max-width: 560px) {
+    .sponsor-grid {
+      grid-template-columns: 1fr;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+  }
+</style>

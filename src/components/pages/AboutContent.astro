@@ -1,0 +1,79 @@
+---
+import { getCollection } from "astro:content"
+import { Picture } from "astro:assets"
+import Container from "@components/container.astro"
+import Sectionhead from "@components/sectionhead.astro"
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const publishedTeamMembers = await getCollection("team", ({ data }) => {
+  return !data.draft && data.publishDate < new Date()
+})
+const publishedPartners = await getCollection("partners", ({ data }) => {
+  return !data.draft && data.publishDate < new Date()
+})
+---
+
+<Container class="pb-24">
+  <Sectionhead eyebrow={t("nav.about")}>
+    <Fragment slot="title">{t("about.title")}</Fragment>
+    <Fragment slot="desc">{t("about.desc")}</Fragment>
+  </Sectionhead>
+
+  <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+    <h2 class="font-bold text-3xl text-navy">{t("about.team")}</h2>
+    <p class="text-lg leading-relaxed text-muted">{t("about.teamLead")}</p>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mx-auto max-w-4xl mt-12">
+    {
+      publishedTeamMembers.map((member) => (
+        <div class="group">
+          <div class="w-full aspect-square">
+            <Picture
+              src={member.data.avatar.src}
+              alt={member.data.avatar.alt}
+              sizes="(max-width: 200px) 80vw, 200px"
+              width={400}
+              height={400}
+              widths={[100, 200]}
+              class="w-full rounded-md transition group-hover:-translate-y-1 group-hover:shadow-xl"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h2 class="text-lg text-navy font-medium">{member.data.name}</h2>
+            <h3 class="text-sm text-muted">{member.data.title}</h3>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-20">
+    <h2 class="font-bold text-3xl text-navy">{t("about.partners")}</h2>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mx-auto max-w-4xl mt-12 items-start">
+    {
+      publishedPartners.map((partner) => (
+        <div class="group">
+          <div class="w-full aspect-square">
+            <Picture
+              src={partner.data.avatar.src}
+              alt={partner.data.avatar.alt}
+              sizes="(max-width: 800px) 100vw, 400px"
+              width={400}
+              height={400}
+              widths={[200, 400]}
+              class="w-full rounded-md transition group-hover:-translate-y-1 group-hover:shadow-xl max-h-[194px] object-contain"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h2 class="text-lg text-navy font-medium">{partner.data.name}</h2>
+            <h3 class="text-sm text-muted">{partner.data.title}</h3>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Container>

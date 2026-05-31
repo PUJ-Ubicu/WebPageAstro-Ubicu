@@ -1,0 +1,133 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const visual = "https://img.youtube.com/vi/NKMb4jWEmXU/maxresdefault.jpg"
+const points = [t("intro.pt1"), t("intro.pt2"), t("intro.pt3"), t("intro.pt4")]
+---
+
+<section class="section-shell intro" id="about">
+  <div class="site-container intro-grid">
+    <div class="intro-copy">
+      <p class="kick reveal">{t("intro.kick")}</p>
+      <h2 class="reveal" data-d="1" set:html={t("intro.h2")} />
+      <p class="reveal" data-d="2">{t("intro.p")}</p>
+      <ul class="intro-points reveal" data-d="3">
+        {
+          points.map((pt) => (
+            <li>
+              <span class="tick">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 12l5 5L20 6" />
+                </svg>
+              </span>
+              <span>{pt}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="intro-visual reveal" data-d="2">
+      <div class="intro-orb"></div>
+      <img src={visual} alt="Dispositivo, app y plataforma Ubicu" loading="lazy" />
+      <span class="ivlabel">{t("intro.iv")}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro {
+    background: var(--color-white);
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(36px, 6vw, 84px);
+    align-items: center;
+  }
+  .intro-copy h2 {
+    font-size: clamp(30px, 3.6vw, 50px);
+    color: var(--color-navy);
+    margin-top: 18px;
+  }
+  .intro-copy :global(h2 .hl) {
+    background: linear-gradient(transparent 62%, color-mix(in srgb, var(--color-cyan) 38%, transparent) 0);
+    padding: 0 2px;
+  }
+  .intro-copy p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    margin-top: 24px;
+  }
+  .intro-points {
+    margin-top: 30px;
+    display: grid;
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+  }
+  .intro-points li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-size: 15.5px;
+    color: var(--color-ink);
+  }
+  .intro-points .tick {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-cyan) 18%, transparent);
+    color: var(--color-cyan-deep);
+    display: grid;
+    place-items: center;
+    margin-top: 1px;
+  }
+  .intro-points .tick svg {
+    width: 13px;
+    height: 13px;
+  }
+  .intro-visual {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-paper-2);
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--color-line);
+  }
+  .intro-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+  .intro-visual .ivlabel {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    font: 600 12px var(--font-disp);
+    letter-spacing: 0.04em;
+    color: var(--color-navy);
+    background: rgba(255, 255, 255, 0.85);
+    padding: 7px 13px;
+    border-radius: 999px;
+  }
+  .intro-orb {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    right: -90px;
+    top: -90px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-cyan) 30%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+  @media (max-width: 980px) {
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

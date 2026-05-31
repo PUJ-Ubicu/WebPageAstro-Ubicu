@@ -1,39 +1,43 @@
 ---
 import { SEO } from "astro-seo"
 import { fade } from "astro:transitions"
-import Footer from "@components/footer.astro"
-import Navbar from "@components/navbar/navbar.astro"
-import "@fontsource/inter"
+import Footer from "@components/Footer.astro"
+import Nav from "@components/navbar/Nav.astro"
+import SiteScripts from "@components/SiteScripts.astro"
 import "../styles/global.css"
 import { ClientRouter } from "astro:transitions"
+import { getLangFromUrl } from "@i18n/utils"
 
 export interface Props {
-  title: string
+  title?: string
+  description?: string
 }
 
+const lang = getLangFromUrl(Astro.url)
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
-
 const resolvedImageWithDomain = new URL("/opengraph.jpg", Astro.site).toString()
 
-const { title } = Astro.props
-
-const makeTitle = title
-  ? title + " | " + "Ubicu"
-  : "Ubicu - Sistema incentivo respiratorio"
+const { title, description } = Astro.props
+const makeTitle = title ? title + " | " + "Ubicu" : "Ubicu - Sistema incentivo respiratorio"
+const desc = description ?? "Ubicu - Sistema incentivo respiratorio"
 ---
 
 <!doctype html>
-<html lang="es" transition:animate={fade({ duration: "0.8s" })}>
+<html lang={lang} transition:animate={fade({ duration: "0.5s" })}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/ubicu-mark.svg" />
     <meta name="generator" content={Astro.generator} />
-
-    <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <SEO
       title={makeTitle}
-      description="Ubicu - Sistema incentivo respiratorio"
+      description={desc}
       canonical={canonicalURL}
       openGraph={{
         basic: {
@@ -50,14 +54,17 @@ const makeTitle = title
     <ClientRouter />
   </head>
   <body>
-    <Navbar />
-    <slot />
+    <Nav />
+    <div class="page-main">
+      <slot />
+    </div>
     <Footer />
+    <SiteScripts />
     <style is:global>
-      /* Improve Page speed */
-      /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
-      img {
-        content-visibility: auto;
+      /* Inner pages need top spacing to clear the fixed navbar. */
+      .page-main {
+        padding-top: 96px;
+        min-height: 60vh;
       }
     </style>
   </body>

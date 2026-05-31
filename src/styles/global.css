@@ -1,27 +1,296 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/*
- * Tailwind v4 ships a full default color palette. The previous v3 config
- * replaced the palette with a small custom set, so numbered shades like
- * `gray-400` / `bg-gray-100` produced no CSS. We reset the color namespace
- * here to preserve that exact behavior (zero visual change), then redefine
- * only the custom colors.
- */
+/* ============================================================
+   Ubicu design system — "Direction B (light & clinical)"
+   Palette from logo · Space/Schibsted Grotesk + Hanken Grotesk
+   Ported from ../Ubicu Landing/assets/landing.css into Tailwind v4.
+   ============================================================ */
 @theme {
+  /* Reset Tailwind's default palette so only our tokens emit classes. */
   --color-*: initial;
-  --color-primary: #22397c;
+
+  /* Brand palette */
+  --color-navy: #21387e;
+  --color-navy-deep: #182a5e;
+  --color-ink: #0f1b3d;
+  --color-blue: #305391;
+  --color-cyan: #4fafd4;
+  --color-cyan-lt: #7fd0e8;
+  --color-cyan-deep: #2f93b8;
+  --color-coral: #ea652c;
+  --color-coral-soft: #f08f65;
+  --color-paper: #f7f6f3;
+  --color-paper-2: #eef2f8;
+  --color-line: #e7e3d9;
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-purple: #7e5bef;
-  --color-pink: #ff49db;
-  --color-orange: #ff7849;
-  --color-green: #13ce66;
-  --color-yellow: #ffc82c;
-  --color-gray-dark: #273444;
-  --color-gray: #8492a6;
-  --color-gray-light: #d3dce6;
+  --color-muted: #5a6280;
+  --color-muted-2: #8089a0;
 
-  --font-sans: "InterVariable", "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* Semantic (forms / feedback) */
+  --color-green: #13ce66;
+  --color-red: #dc3545;
+
+  /* Brand accent (coral, matches prototype's active tweak default) */
+  --color-accent: #ea652c;
+  --color-accent-soft: #f08f65;
+
+  /* Back-compat alias so any lingering `*-primary` classes still resolve
+     to the brand navy during migration. Remove once all pages converted. */
+  --color-primary: #21387e;
+
+  /* Typography — display = Space Grotesk (rendered prototype default),
+     Schibsted Grotesk kept loaded as the authored alternate. */
+  --font-disp: "Space Grotesk", "Schibsted Grotesk", system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk", system-ui, sans-serif;
+
+  /* Radii / motion / layout */
+  --radius-sm: 11px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --ease-brand: cubic-bezier(0.22, 0.7, 0.25, 1);
+  --container-site: 1240px;
+
+  /* Reveal stagger keyframes / named animations */
+  --animate-marq: marq 26s linear infinite;
+  --animate-ring-pulse: ring-pulse 2.6s ease-out infinite;
+  --animate-blink: blink 1.6s ease-in-out infinite;
+  --animate-breathe: breathe 6s ease-in-out infinite;
+
+  @keyframes marq {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes ring-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+  }
+}
+
+/* ============================ BASE ============================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-disp);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 0.99;
+    text-wrap: balance;
+  }
+  /* Page-speed: lazy raster of offscreen images */
+  img {
+    content-visibility: auto;
+  }
+}
+
+/* ============================ COMPONENTS ============================ */
+@layer components {
+  /* Section container (site max width + responsive gutter) */
+  .site-container {
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: clamp(22px, 5vw, 72px);
+  }
+
+  /* Eyebrow / kicker labels */
+  .kick {
+    font-family: var(--font-disp);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-blue);
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-disp);
+    font-weight: 600;
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    background: var(--color-white);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 8px 15px;
+  }
+  .eyebrow .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 22%, transparent);
+  }
+
+  /* Buttons */
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 26px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    transition:
+      transform 0.25s var(--ease-brand),
+      box-shadow 0.25s var(--ease-brand),
+      background 0.25s;
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0 10px 26px -8px color-mix(in srgb, var(--color-accent) 70%, transparent);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 34px -8px color-mix(in srgb, var(--color-accent) 75%, transparent);
+  }
+  .btn-navy {
+    background: var(--color-navy);
+    color: #fff;
+  }
+  .btn-navy:hover {
+    background: var(--color-navy-deep);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--color-line);
+    color: var(--color-navy);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-navy);
+    background: var(--color-white);
+  }
+  .text-link {
+    font-weight: 600;
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-cyan);
+    padding-bottom: 2px;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .text-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  /* Section shell + heading */
+  .section-shell {
+    padding-block: clamp(80px, 11vw, 150px);
+  }
+  .section-head {
+    max-width: 680px;
+  }
+  .section-head.center {
+    margin-inline: auto;
+    text-align: center;
+  }
+  .section-head h2 {
+    font-size: clamp(34px, 4.8vw, 62px);
+    color: var(--color-navy);
+    margin-top: 18px;
+  }
+  .section-head p {
+    font-size: clamp(17px, 1.5vw, 19px);
+    line-height: 1.55;
+    color: var(--color-muted);
+    margin-top: 22px;
+  }
+}
+
+/* ============================ REVEAL / MOTION ============================ */
+/* Default visible (no-JS / failsafe safe); only hide once JS is active. */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+html.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.8s var(--ease-brand),
+    transform 0.8s var(--ease-brand);
+}
+html.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.reveal[data-d="1"] {
+  transition-delay: 0.08s;
+}
+.reveal[data-d="2"] {
+  transition-delay: 0.16s;
+}
+.reveal[data-d="3"] {
+  transition-delay: 0.24s;
+}
+.reveal[data-d="4"] {
+  transition-delay: 0.32s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
 }
