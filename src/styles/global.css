@@ -52,47 +52,47 @@
   --radius-lg: 24px;
   --ease-brand: cubic-bezier(0.22, 0.7, 0.25, 1);
   --container-site: 1240px;
+}
 
-  /* Reveal stagger keyframes / named animations */
-  --animate-marq: marq 26s linear infinite;
-  --animate-ring-pulse: ring-pulse 2.6s ease-out infinite;
-  --animate-blink: blink 1.6s ease-in-out infinite;
-  --animate-breathe: breathe 6s ease-in-out infinite;
-
-  @keyframes marq {
-    to {
-      transform: translateX(-50%);
-    }
+/* ====================== KEYFRAMES ======================
+   Defined at top level (NOT inside @theme): Tailwind v4 only emits
+   keyframes nested in @theme when a matching `animate-*` utility is
+   used in markup. These are driven by raw `animation:` rules in the
+   landing components' scoped styles, so they must live here to be
+   emitted unconditionally. */
+@keyframes marq {
+  to {
+    transform: translateX(-50%);
   }
-  @keyframes ring-pulse {
-    0% {
-      transform: scale(1);
-      opacity: 0.8;
-    }
-    100% {
-      transform: scale(1.7);
-      opacity: 0;
-    }
+}
+@keyframes ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
   }
-  @keyframes blink {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.25;
-    }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
   }
-  @keyframes breathe {
-    0%,
-    100% {
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
-    50% {
-      transform: scale(1.05);
-      opacity: 1;
-    }
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
   }
 }
 
