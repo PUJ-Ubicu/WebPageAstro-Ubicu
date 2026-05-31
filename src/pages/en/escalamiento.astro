@@ -8,6 +8,6 @@ const lang = getLangFromUrl(Astro.url)
 const entries = await getLocalizedCollection("escalamiento", lang)
 ---
 
-<Layout title="Escalamiento del producto">
+<Layout title="Product scaling">
   <CollectionList collectionKey="escalamiento" lang={lang} entries={entries} />
 </Layout>

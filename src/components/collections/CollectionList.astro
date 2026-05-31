@@ -1,0 +1,91 @@
+---
+import { Image, Picture } from "astro:assets"
+import Container from "@components/container.astro"
+import Sectionhead from "@components/sectionhead.astro"
+import { useTranslations, localizedPath } from "@i18n/utils"
+import {
+  COLLECTION_META,
+  type LocalizedCollection,
+  type LocalizedEntry,
+} from "@i18n/content"
+import type { Lang } from "@i18n/ui"
+
+interface Props {
+  collectionKey: LocalizedCollection
+  lang: Lang
+  entries: LocalizedEntry<LocalizedCollection>[]
+}
+
+const { collectionKey, lang, entries } = Astro.props
+const meta = COLLECTION_META[collectionKey]
+const t = useTranslations(lang)
+
+const cards = entries.map(({ entry, slug }, index) => {
+  const data = entry.data as typeof entry.data & { link?: string }
+  const external = !!data.link
+  return {
+    data,
+    external,
+    eager: index <= 2,
+    href: external ? data.link! : localizedPath(`${meta.listPath}/${slug}`, lang),
+  }
+})
+---
+
+<Container>
+  <Sectionhead>
+    <Fragment slot="title">{t(meta.titleKey)}</Fragment>
+    <Fragment slot="desc" set:html={t(meta.descKey)} />
+  </Sectionhead>
+  <main class="mt-16">
+    <ul class="grid gap-16 max-w-4xl mx-auto">
+      {
+        cards.map((card) => (
+          <li>
+            <a href={card.href} target={card.external ? "_blank" : "_self"}>
+              <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                {card.data.image.src.format === "svg" ? (
+                  <Image
+                    src={card.data.image.src}
+                    alt={card.data.image.alt}
+                    format="svg"
+                    loading={card.eager ? "eager" : "lazy"}
+                    decoding={card.eager ? "sync" : "async"}
+                    class="w-full rounded-md aspect-video"
+                  />
+                ) : (
+                  <Picture
+                    src={card.data.image.src}
+                    alt={card.data.image.alt}
+                    sizes="(max-width: 800px) 100vw, 800px"
+                    widths={[200, 400, 800]}
+                    loading={card.eager ? "eager" : "lazy"}
+                    decoding={card.eager ? "sync" : "async"}
+                    class="w-full rounded-md aspect-video"
+                  />
+                )}
+                <div>
+                  <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+                    {card.data.category}
+                  </span>
+                  <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1">
+                    {card.data.title}
+                  </h2>
+                  <div class="flex gap-2 mt-3">
+                    <span class="text-muted-2">{card.data.author}</span>
+                    <span class="text-muted-2">• </span>
+                    <time
+                      class="text-muted-2"
+                      datetime={card.data.publishDate.toISOString()}>
+                      {card.data.publishDate.toDateString()}
+                    </time>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Container>

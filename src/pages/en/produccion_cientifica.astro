@@ -5,9 +5,13 @@ import { getLocalizedCollection } from "@i18n/content"
 import { getLangFromUrl } from "@i18n/utils"
 
 const lang = getLangFromUrl(Astro.url)
-const entries = await getLocalizedCollection("escalamiento", lang)
+const entries = await getLocalizedCollection("produccion_cientifica", lang)
 ---
 
-<Layout title="Escalamiento del producto">
-  <CollectionList collectionKey="escalamiento" lang={lang} entries={entries} />
+<Layout title="Scientific output">
+  <CollectionList
+    collectionKey="produccion_cientifica"
+    lang={lang}
+    entries={entries}
+  />
 </Layout>

@@ -97,6 +97,15 @@ export const ui = {
     // Sponsors
     "spon.kick": "Patrocinado por",
     "spon.role": "Promotor",
+    // Collections (listing/detail pages)
+    "col.esc.desc":
+      'Presentación de ubicu en los distintos niveles de maduración tecnológica (<a class="no-underline hover:underline text-navy" href="https://www.mincotur.gob.es/publicaciones/publicacionesperiodicas/economiaindustrial/revistaeconomiaindustrial/393/notas.pdf" target="_blank" rel="noopener">TRL</a>).',
+    "col.esc.back": "← Regresar a escalamiento del producto",
+    "col.prod.desc":
+      "Presentación de los recursos científicos, académicos e informativos de Ubicu.",
+    "col.prod.back": "← Regresar a producción científica",
+    "col.proc.desc": "Presentación de las distintas etapas de diseño de Ubicu.",
+    "col.proc.back": "← Regresar a proceso de diseño",
     // Footer
     "f.blurb":
       "Producto de apoyo para la fisioterapia respiratoria con incentivo. Ejercicios desde casa, datos en la nube.",
@@ -207,6 +216,14 @@ export const ui = {
     "cta.b2": "Watch the video",
     "spon.kick": "Backed by",
     "spon.role": "Sponsor",
+    "col.esc.desc":
+      'Ubicu presented across the different technology readiness levels (<a class="no-underline hover:underline text-navy" href="https://www.mincotur.gob.es/publicaciones/publicacionesperiodicas/economiaindustrial/revistaeconomiaindustrial/393/notas.pdf" target="_blank" rel="noopener">TRL</a>).',
+    "col.esc.back": "← Back to product scaling",
+    "col.prod.desc":
+      "An overview of Ubicu's scientific, academic and informational resources.",
+    "col.prod.back": "← Back to scientific output",
+    "col.proc.desc": "An overview of Ubicu's design stages.",
+    "col.proc.back": "← Back to design process",
     "f.blurb":
       "Support product for incentive respiratory therapy. Exercises from home, data in the cloud.",
     "f.col1": "Product",
@@ -246,3 +263,20 @@ export const ui = {
 } as const
 
 export type UIKey = keyof (typeof ui)["es"]
+
+/* Team/partner role labels live in collection frontmatter (Spanish).
+   Map each distinct Spanish value to its English equivalent; unmapped
+   values fall back to the original string. */
+export const roleLabels: Record<string, string> = {
+  Coinvestigador: "Co-investigator",
+  "Desarollador de software": "Software developer",
+  "Desarrollador de software": "Software developer",
+  "Director del proyecto": "Project director",
+  "Diseñador, Gerente de Prompack": "Designer, Prompack Manager",
+  "Diseño Industrial": "Industrial Design",
+  "Diseño Visual": "Visual Design",
+  "Escalamiento del producto": "Product scaling",
+  "Estudios clínicos": "Clinical studies",
+  "Ingeniero de hardware y firmware": "Hardware & firmware engineer",
+  Promotor: "Promoter",
+}

@@ -2,7 +2,7 @@
    Ubicu i18n helpers — standard Astro i18n recipe.
    es is the default locale (served at "/"); en is prefixed ("/en/").
    ============================================================ */
-import { ui, defaultLang, type Lang, type UIKey } from "./ui"
+import { ui, defaultLang, roleLabels, type Lang, type UIKey } from "./ui"
 
 /** Read the active locale from a URL pathname (first segment). */
 export function getLangFromUrl(url: URL): Lang {
@@ -43,6 +43,15 @@ export function alternatePath(url: URL, target: Lang): string {
     path = path.replace(new RegExp(`^/${current}`), "") || "/"
   }
   return localizedPath(path, target)
+}
+
+/**
+ * Translate a team/partner role label. ES returns the original frontmatter
+ * string; EN returns the mapped translation (falling back to the original).
+ */
+export function roleLabel(title: string, lang: Lang): string {
+  if (lang === defaultLang) return title
+  return roleLabels[title] ?? title
 }
 
 export { type Lang, type UIKey }

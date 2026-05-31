@@ -4,7 +4,7 @@ import CollectionDetail from "@components/collections/CollectionDetail.astro"
 import { getLocalizedPaths } from "@i18n/content"
 
 export async function getStaticPaths() {
-  return getLocalizedPaths("produccion_cientifica", "es")
+  return getLocalizedPaths("produccion_cientifica", "en")
 }
 
 const { entry, lang, isFallback } = Astro.props
