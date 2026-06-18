@@ -116,6 +116,7 @@ export const ui = {
     "f.l3": "Demo",
     "f.l4": "Quiénes somos",
     "f.l5": "Contacto",
+    "f.privacy": "Política de privacidad",
     "f.rights": "Ubicu. Todos los derechos reservados.",
     "f.location": "Cali, Colombia",
     // Inner pages (chrome)
@@ -140,6 +141,10 @@ export const ui = {
     "form.errMsg": "Por favor ingresa tu mensaje.",
     "form.sending": "Enviando...",
     "form.wrong": "Algo salió mal.",
+    "privacy.eyebrow": "Privacidad",
+    "privacy.title": "Política de privacidad",
+    "privacy.desc":
+      "Cómo recopilamos, usamos y protegemos tus datos personales en el sitio web y en la aplicación móvil de Ubicu. Última actualización: 18 de junio de 2026.",
     "notfound.title": "Página no encontrada",
     "notfound.p": "La página que buscas no existe o fue movida.",
     "notfound.back": "Volver al inicio",
@@ -233,6 +238,7 @@ export const ui = {
     "f.l3": "Demo",
     "f.l4": "About us",
     "f.l5": "Contact",
+    "f.privacy": "Privacy Policy",
     "f.rights": "Ubicu. All rights reserved.",
     "f.location": "Cali, Colombia",
     "about.title": "About us",
@@ -256,6 +262,10 @@ export const ui = {
     "form.errMsg": "Please enter your message.",
     "form.sending": "Sending...",
     "form.wrong": "Something went wrong.",
+    "privacy.eyebrow": "Privacy",
+    "privacy.title": "Privacy Policy",
+    "privacy.desc":
+      "How we collect, use and protect your personal data across the Ubicu website and mobile app. Last updated: June 18, 2026.",
     "notfound.title": "Page not found",
     "notfound.p": "The page you are looking for does not exist or was moved.",
     "notfound.back": "Back to home",
