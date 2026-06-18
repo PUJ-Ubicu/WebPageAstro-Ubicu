@@ -10,35 +10,41 @@ const thumb = "https://img.youtube.com/vi/NKMb4jWEmXU/maxresdefault.jpg"
 <section class="hero" id="top">
   <div class="site-container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow reveal"><span class="dot"></span>{t("hero.eyebrow")}</span>
+      <span class="eyebrow reveal"
+        ><span class="dot"></span>{t("hero.eyebrow")}</span
+      >
       <h1 class="reveal" data-d="1" set:html={t("hero.h1")} />
       <p class="lead reveal" data-d="2">{t("hero.lead")}</p>
       <div class="hero-acts reveal" data-d="3">
-        <a href={localizedPath("/contact", lang)} class="btn btn-primary">{t("hero.cta1")}</a>
+        <a href={localizedPath("/contact", lang)} class="btn btn-primary"
+          >{t("hero.cta1")}</a
+        >
         <a href={`${home}#how`} class="text-link">{t("hero.cta2")}</a>
       </div>
       <div class="hero-stats reveal" data-d="4">
         <div class="stat">
-          <div class="n" data-count="2">2</div>
-          <div class="l">{t("hero.s1l")}</div>
-        </div>
-        <div class="stat">
-          <div class="n" data-count="100" data-suf="%">100<span class="u">%</span></div>
+          <div class="n" data-count="100" data-suf="%">
+            100<span class="u">%</span>
+          </div>
           <div class="l">{t("hero.s2l")}</div>
-        </div>
-        <div class="stat">
-          <div class="n" data-count="6" data-pre="+">+6</div>
-          <div class="l">{t("hero.s3l")}</div>
         </div>
       </div>
     </div>
 
     <div class="hero-media reveal" data-d="2">
       <div class="breath-badge"><span></span><span></span></div>
-      <div class="hero-frame" data-video-trigger role="button" tabindex="0" aria-label={t("video.play")}>
+      <div
+        class="hero-frame"
+        data-video-trigger
+        role="button"
+        tabindex="0"
+        aria-label={t("video.play")}>
         <img src={thumb} alt="Plataforma Ubicu" loading="eager" />
         <div class="grade"></div>
-        <div class="play-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></div>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"
+            ><path d="M8 5v14l11-7z"></path></svg>
+        </div>
       </div>
     </div>
   </div>
@@ -132,7 +138,11 @@ const thumb = "https://img.youtube.com/vi/NKMb4jWEmXU/maxresdefault.jpg"
   .hero-frame .grade {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(33, 56, 126, 0.06), rgba(15, 27, 61, 0.42));
+    background: linear-gradient(
+      180deg,
+      rgba(33, 56, 126, 0.06),
+      rgba(15, 27, 61, 0.42)
+    );
   }
   .play-btn {
     position: absolute;
@@ -193,8 +203,20 @@ const thumb = "https://img.youtube.com/vi/NKMb4jWEmXU/maxresdefault.jpg"
     border-bottom: 1px solid var(--color-line);
     padding: 18px 0;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
   }
   .marquee-track {
     display: flex;
