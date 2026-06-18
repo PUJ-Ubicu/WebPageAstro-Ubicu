@@ -58,7 +58,6 @@ const enPath = alternatePath(Astro.url, "en")
             <a href={esPath} class:list={["lang-btn", { on: lang === "es" }]}>ES</a>
             <a href={enPath} class:list={["lang-btn", { on: lang === "en" }]}>EN</a>
           </div>
-          <a href={localizedPath("/contact", lang)} class="btn btn-primary nav-cta">{t("nav.cta")}</a>
         </div>
       </MenuItems>
     </Astronav>
@@ -273,9 +272,6 @@ const enPath = alternatePath(Astro.url, "en")
   .lang-btn.on {
     background: var(--color-navy);
     color: #fff;
-  }
-  .nav-cta {
-    white-space: nowrap;
   }
 
   /* Mobile: when the hamburger menu is open, the dropdown sits over page

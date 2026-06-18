@@ -21,7 +21,6 @@ export const ui = {
     "nav.product": "Producto",
     "nav.how": "Cómo funciona",
     "nav.contact": "Contacto",
-    "nav.cta": "Solicitar demo",
     "nav.menu": "Menú",
     // Product dropdown (real sub-pages)
     "nav.escalamiento": "Escalamiento del producto",
@@ -154,7 +153,6 @@ export const ui = {
     "nav.product": "Product",
     "nav.how": "How it works",
     "nav.contact": "Contact",
-    "nav.cta": "Request a demo",
     "nav.menu": "Menu",
     "nav.escalamiento": "Product scaling",
     "nav.produccion": "Scientific output",
