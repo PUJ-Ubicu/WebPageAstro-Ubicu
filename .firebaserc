@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "ubicu-blog"
+  },
+  "targets": {
+    "ubicu-blog": {
+      "hosting": {
+        "ubicu-blog": [
+          "ubicu-blog"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

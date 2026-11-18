@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # migration screenshots
 migration-shots/
+
+# Firebase CLI
+.firebase/
+firebase-debug.log*

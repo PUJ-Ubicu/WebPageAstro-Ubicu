@@ -1,0 +1,14 @@
+{
+  "hosting": {
+    "target": "ubicu-blog",
+    "public": "dist",
+    "predeploy": "pnpm build --site https://ubicu-blog.web.app",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
