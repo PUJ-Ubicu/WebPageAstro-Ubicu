@@ -1,0 +1,185 @@
+---
+import { Image } from "astro:assets"
+import certificate from "@assets/images/awards/inventor-colombiano-certificate.jpg"
+import trophy from "@assets/images/awards/inventor-colombiano-trophy.jpg"
+import { getLangFromUrl, useTranslations } from "@i18n/utils"
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const announcement = "https://www.javerianacali.edu.co/noticias/la-javeriana-cali-brilla-en-el-premio-nacional-al-inventor-colombiano-2026"
+const photoSizes = "(max-width: 760px) 48vw, (max-width: 1240px) 24vw, 300px"
+---
+
+<section class="awards site-container" id="awards" aria-labelledby="awards-title">
+  <h2 class="awards-title" id="awards-title">{t("awards.title")}</h2>
+
+  <article class="award-feature" aria-labelledby="inventor-award-title">
+    <div class="award-copy">
+      <p class="kick award-name">{t("awards.inventor.name")}</p>
+      <h3 id="inventor-award-title">{t("awards.inventor.title")}</h3>
+      <p class="award-description">{t("awards.inventor.description")}</p>
+      <div class="award-meta">
+        <time datetime="2026-06-02">{t("awards.inventor.date")}</time>
+        <a class="award-link" href={announcement} hreflang="es">
+          {t("awards.inventor.source")} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="award-photos">
+      <a class="award-photo trophy" href={trophy.src} target="_blank" rel="noopener" aria-label={t("awards.trophy.open")}>
+        <Image src={trophy} alt={t("awards.trophy.alt")} format="webp" widths={[220, 360, 580, 720]} sizes={photoSizes} />
+        <span class="photo-open" aria-hidden="true">+</span>
+      </a>
+      <a class="award-photo certificate" href={certificate.src} target="_blank" rel="noopener" aria-label={t("awards.certificate.open")}>
+        <Image src={certificate} alt={t("awards.certificate.alt")} format="webp" widths={[220, 360, 580, 720]} sizes={photoSizes} />
+        <span class="photo-open" aria-hidden="true">+</span>
+      </a>
+    </div>
+  </article>
+</section>
+
+<style>
+  .awards {
+    padding-block: 4px clamp(64px, 8vw, 106px);
+    scroll-margin-top: 94px;
+  }
+  .awards-title {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2vw, 24px);
+    margin-bottom: clamp(20px, 3vw, 32px);
+    font-size: clamp(30px, 3.8vw, 49px);
+    line-height: 1.08;
+    color: var(--color-navy);
+  }
+  .awards-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--color-line);
+  }
+
+  .award-feature {
+    --award-gold: #ffdc92;
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: clamp(22px, 4vw, 56px);
+    padding: clamp(24px, 4.4vw, 60px);
+    border-radius: var(--radius-lg);
+    color: var(--color-white);
+    background: radial-gradient(ellipse at 100% 70%, #354a83, transparent 61%), var(--color-ink);
+  }
+  .award-name {
+    margin-bottom: 14px;
+    color: var(--award-gold);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  .award-copy h3 {
+    max-width: 18ch;
+    font-size: clamp(30px, 3.6vw, 49px);
+    line-height: 1.06;
+    text-wrap: pretty;
+  }
+  .award-description {
+    max-width: 42ch;
+    margin-top: 16px;
+    color: #dce4f5;
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.55;
+  }
+  .award-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .award-meta time {
+    color: #c4cfe8;
+  }
+  .award-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .award-feature .award-link {
+    color: var(--award-gold);
+  }
+  .award-link:hover {
+    text-decoration-thickness: 2px;
+  }
+  .award-link:focus-visible,
+  .award-photo:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .award-photos {
+    display: grid;
+    isolation: isolate;
+  }
+  .award-photo {
+    position: relative;
+    grid-area: 1 / 1;
+    align-self: end;
+    display: block;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.78);
+    border-radius: var(--radius-md);
+    box-shadow: 0 14px 30px rgba(6, 15, 40, 0.32);
+    color: var(--award-gold);
+  }
+  .award-photo:focus-visible {
+    z-index: 1;
+  }
+  .award-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .award-photo.trophy {
+    justify-self: end;
+    width: 58%;
+  }
+  .award-photo.certificate {
+    justify-self: start;
+    width: 54%;
+    margin-bottom: clamp(12px, 4vw, 44px);
+  }
+  .photo-open {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-white);
+    font-size: 19px;
+    line-height: 1;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .award-photo:hover .photo-open,
+  .award-photo:focus-visible .photo-open {
+    background: var(--award-gold);
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 760px) {
+    .award-feature {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

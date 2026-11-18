@@ -37,6 +37,18 @@ export const ui = {
     "hero.s2l": "supervisión remota desde el hogar",
     "hero.s3l": "capacidades para el fisioterapeuta",
     marq: "Fisioterapia respiratoria · Incentivo gamificado · Supervisión remota · Datos en la nube · Tratamiento ambulatorio · Rehabilitación pulmonar",
+    // Awards
+    "awards.title": "Reconocimiento nacional",
+    "awards.inventor.name": "XV Premio Nacional al Inventor Colombiano",
+    "awards.inventor.title": "Mejor Invención con Gestión Comercial",
+    "awards.inventor.description":
+      "La Superintendencia de Industria y Comercio distinguió el dispositivo de fisioterapia respiratoria desarrollado por la Pontificia Universidad Javeriana Cali y la Universidad del Valle.",
+    "awards.inventor.date": "2 de junio de 2026",
+    "awards.inventor.source": "Anuncio de Javeriana Cali",
+    "awards.trophy.alt": "Trofeo del Premio Nacional al Inventor Colombiano 2026 entregado a Ubicu",
+    "awards.trophy.open": "Ver foto del trofeo a tamaño completo",
+    "awards.certificate.alt": "Diploma de Mejor Invención con Gestión Comercial otorgado a las dos universidades",
+    "awards.certificate.open": "Ver foto del diploma a tamaño completo",
     // Video
     "video.kick": "Ubicu en acción",
     "video.h2": "Un videojuego que enseña a respirar.",
@@ -167,6 +179,17 @@ export const ui = {
     "hero.s2l": "remote supervision, from home",
     "hero.s3l": "capabilities for the therapist",
     marq: "Respiratory therapy · Gamified incentive · Remote supervision · Cloud data · Ambulatory treatment · Pulmonary rehab",
+    "awards.title": "National recognition",
+    "awards.inventor.name": "15th Colombian National Inventor Award",
+    "awards.inventor.title": "Best Invention for Commercialization",
+    "awards.inventor.description":
+      "Colombia’s Superintendence of Industry and Commerce recognized the respiratory therapy device developed by Pontificia Universidad Javeriana Cali and Universidad del Valle.",
+    "awards.inventor.date": "June 2, 2026",
+    "awards.inventor.source": "Javeriana Cali announcement",
+    "awards.trophy.alt": "Ubicu’s trophy from the 2026 Colombian National Inventor Award",
+    "awards.trophy.open": "View the full-size trophy photo",
+    "awards.certificate.alt": "Best Invention for Commercialization certificate awarded to both universities",
+    "awards.certificate.open": "View the full-size certificate photo",
     "video.kick": "Ubicu in action",
     "video.h2": "A videogame that teaches you to breathe.",
     "video.p":
